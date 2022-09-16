@@ -12,7 +12,7 @@ export const AppHeader = ({ logout, username }: any) => {
           </Text>
         </div>
       </Group>
-      <ActionIcon variant="default" onClick={() => logout()} size={30}>
+      <ActionIcon variant="default" onClick={logout} size={30}>
         <IconLogout size={20} />
       </ActionIcon>
     </Group>);

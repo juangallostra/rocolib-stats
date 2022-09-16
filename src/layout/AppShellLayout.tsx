@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppShell, Header } from '@mantine/core';
-import { AppRoutes } from '../router/routes';
 import { AppHeader } from './AppHeader'
+import { AppRoutes } from '../router';
 
 interface ShellLayoutProps {
   username: string;
@@ -15,9 +15,9 @@ export const AppShellLayout = ({ username, children, logout }: ShellLayoutProps)
       padding="md"
       navbar={<AppRoutes />}
       header={<Header height={60} p="xs"><AppHeader username={username} logout={logout}/></Header>}
-      styles={(theme) => ({
-        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
-      })}
+      // styles={(theme) => ({
+      //   main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+      // })}
     >
       {children}
     </AppShell>

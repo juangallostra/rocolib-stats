@@ -1,4 +1,4 @@
-import { Loader, Text } from '@mantine/core';
+import { Loader } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { StatsCard, StatsSegments } from '../components';
 import { AppShellLayout } from '../layout';
@@ -15,29 +15,29 @@ export interface Ticklist {
 }
 
 export interface Boulder {
-    color: string,
-    creator: string,
-    date_climbed: string[],
-    difficulty: string,
-    feet: string,
-    gym: string,
-    holds: Hold[],
-    is_done: boolean,
-    name: string,
-    radius: number,
-    raters: number,
-    rating: number,
-    repetitions: number,
-    safe_name: string,
-    section: string,
-    time: string,
-    _id: string,
+    color: string;
+    creator: string;
+    date_climbed: string[];
+    difficulty: string;
+    feet: string;
+    gym: string;
+    holds: Hold[];
+    is_done: boolean;
+    name: string;
+    radius: number;
+    raters: number;
+    rating: number;
+    repetitions: number;
+    safe_name: string;
+    section: string;
+    time: string;
+    _id: string;
 }
 
 interface Hold {
-    color: string,
-    x: number,
-    y: number,
+    color: string;
+    x: number;
+    y: number;
 }
 
 export const Dashboard = ({ token, username, logout }: DashboardProps) => {

@@ -3,12 +3,12 @@ import { useForm } from '@mantine/form'
 import React from 'react';
 
 interface LoginProps {
-    setToken: React.Dispatch<React.SetStateAction<string>>
-    setUsername: React.Dispatch<React.SetStateAction<string>>
+    setToken: React.Dispatch<React.SetStateAction<string>>;
+    setUsername: React.Dispatch<React.SetStateAction<string>>;
 }
 interface userCreds {
-    username: string,
-    password: string
+    username: string;
+    password: string;
 }
 
 async function loginUser(credentials: userCreds) {
