@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
+import Login from './components/Login';
+import './components/Login.css'
+import { Dashboard, Preferences } from './pages';
+
+export default function App() {
+  const [token, setToken] = useState("");
+  const [username, setUsername] = useState("");
+
+  function Logout() {
+    setToken("");
+  }
+
+  const getUsername = () => username;
+
+  if (!token) {
+    return (
+      <div className="login-wrapper">
+        <Login setUsername={setUsername} setToken={setToken}/>
+      </div>
+    )
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={ <Dashboard username={getUsername()} token={token} logout={Logout} /> } />
+          <Route path='/preferences' element={ <Preferences username={getUsername()} logout={Logout} /> } />
+        </Routes>
+      </BrowserRouter>
   );
 }
-
-export default App;
