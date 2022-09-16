@@ -5,6 +5,6 @@ Explore your [RocoLib](https://rocolib.herokuapp.com) user stats with this small
 # Dashboard
 
 <p align="center" style="text-align:center;">
-<img src="/public/overview.png"><br>
-Dashboard overview
+    <img src="/public/overview.png"><br>
+    Dashboard overview
 </p>
