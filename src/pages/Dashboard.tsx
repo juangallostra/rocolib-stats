@@ -72,9 +72,9 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
         return colors.map(
             c => Object.fromEntries(
                 [
-                    ["count", "" + ticklist.filter(p => p.is_done && p.difficulty === c).length],
+                    ["count", "" + ticklist.filter(p => p.difficulty === c).length],
                     ["label", c],
-                    ["part", Math.round(100 * (100 * (Number.EPSILON + ticklist.filter(p => p.is_done && p.difficulty === c).length / ticklist.filter(p => p.is_done).length))) / 100],
+                    ["part", Math.round(100 * (100 * (Number.EPSILON + ticklist.filter(p => p.difficulty === c).length / ticklist.length))) / 100],
                     ["color", c]
                 ]
             )
@@ -86,9 +86,20 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
             <AppShellLayout logout={logout} username={username}>
                 <h2>Dashboard</h2>
                 <div style={{marginBottom: "1rem"}}>
-                <StatsCard done={userTicklist.filter(e => e.is_done).length} todo={userTicklist.filter(e => !e.is_done).length}></StatsCard>
+                    <StatsCard done={userTicklist.filter(e => e.is_done).length} todo={userTicklist.filter(e => !e.is_done).length}></StatsCard>
                 </div>
-                <StatsSegments total={"" + userTicklist.filter(e => e.is_done).length} diff={0} data={segmentData(userTicklist)} ></StatsSegments>
+                <div style={{marginBottom: "1rem"}}>
+                    <StatsSegments total={"" + userTicklist.filter(e => e.is_done).length} 
+                        diff={0} 
+                        data={segmentData(userTicklist.filter(p => p.is_done))}
+                        title="Problems sent"/>
+                </div>
+                <div>
+                    <StatsSegments total={"" + userTicklist.filter(e => !e.is_done).length} 
+                        diff={0} 
+                        data={segmentData(userTicklist.filter(p => !p.is_done))}
+                        title="Problems to send"/>
+                </div>
             </AppShellLayout>
         )
     } else {

@@ -32,6 +32,7 @@ const useStyles = createStyles((theme) => ({
 interface StatsSegmentsProps {
   total: string;
   diff: number;
+  title: string;
   data: {
     label: string;
     count: string;
@@ -40,7 +41,7 @@ interface StatsSegmentsProps {
   }[];
 }
 
-export const StatsSegments = ({ total, diff, data }: StatsSegmentsProps) => {
+export const StatsSegments = ({ total, diff, title, data }: StatsSegmentsProps) => {
   const { classes } = useStyles();
 
   const segments = data.map((segment) => ({
@@ -69,7 +70,7 @@ export const StatsSegments = ({ total, diff, data }: StatsSegmentsProps) => {
       <Group position="apart">
         <Group align="flex-end" spacing="xs">
           <Text size="xl" weight={700}>
-            {total} Problems sent
+            {total} {title}
           </Text>
           {/* <Text color="teal" className={classes.diff} size="sm" weight={700}>
             <span>{diff}%</span>
