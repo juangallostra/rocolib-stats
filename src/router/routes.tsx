@@ -1,9 +1,17 @@
 import { Navbar } from "@mantine/core";
 import { DashboardNav, PreferencesNav } from "../components";
 
-export const AppRoutes = () => {
+interface NavBarProps {
+    opened: boolean;
+}
+
+export const AppRoutes = ({opened}: NavBarProps) => {
     return (
-        <Navbar width={{ base: 250 }} height={"100vh"} p="xs">
+        <Navbar p="md" 
+            hiddenBreakpoint="sm" 
+            hidden={!opened} 
+            width={{ sm: 200, lg: 250 }} 
+            height={"100vh"}>
             <Navbar.Section mt="xs">
                 <DashboardNav />
             </Navbar.Section>
