@@ -13,8 +13,8 @@ interface userCreds {
 
 async function loginUser(credentials: userCreds) {
     return fetch(
-        // 'https://rocolib.herokuapp.com/api/v1/user/auth',
-        'http://localhost:5050/api/v1/user/auth',
+        'https://rocolib.herokuapp.com/api/v1/user/auth',
+        // 'http://localhost:5050/api/v1/user/auth',
         {
             method: 'POST',
             headers: {

@@ -55,8 +55,8 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
 
     async function getUserData(token: string) {
         return fetch(
-            // 'https://rocolib.herokuapp.com/api/v1/user/ticklist',
-            'http://localhost:5050/api/v1/user/ticklist',
+            'https://rocolib.herokuapp.com/api/v1/user/ticklist',
+            // 'http://localhost:5050/api/v1/user/ticklist',
             {
                 method: 'GET',
                 headers: {
