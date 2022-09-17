@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppShell, Header, useMantineTheme } from '@mantine/core';
+import { AppShell, Header } from '@mantine/core';
 import { AppHeader } from './AppHeader'
 import { AppRoutes } from '../router';
 

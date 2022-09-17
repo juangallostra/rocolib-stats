@@ -1,8 +1,9 @@
-import { Loader } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import { Loader, Text } from '@mantine/core';
+import React from 'react';
 import { StatsCard, StatsSegments } from '../components';
 import { AppShellLayout } from '../layout';
 import './Dashboard.css';
+import { useQuery } from '@tanstack/react-query'
 
 export interface DashboardProps {
     token: string;
@@ -41,17 +42,9 @@ interface Hold {
 }
 
 export const Dashboard = ({ token, username, logout }: DashboardProps) => {
-    const [userTicklist, setUserTicklist] = useState<Boulder[]>()
 
     const colors = ["green", "blue", "yellow", "red"];
-
-    useEffect(() => {
-        getUserData(token).then(
-            (res: Ticklist) => {
-                setUserTicklist(res.boulders);
-            }
-        )
-    })
+    const ticklistQueryKey = 'ticklist';
 
     async function getUserData(token: string) {
         return fetch(
@@ -66,6 +59,7 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
             }
         )
             .then(data => data.json())
+            .then(data => data.boulders)
     }
 
     function segmentData(ticklist: Boulder[]): any {
@@ -81,28 +75,10 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
         );
     }
 
-    if (userTicklist) {
-        return (
-            <AppShellLayout logout={logout} username={username}>
-                <h2>Dashboard</h2>
-                <div style={{marginBottom: "1rem"}}>
-                    <StatsCard done={userTicklist.filter(p => p.is_done).length} todo={userTicklist.filter(p => !p.is_done).length}></StatsCard>
-                </div>
-                <div style={{marginBottom: "1rem"}}>
-                    <StatsSegments total={"" + userTicklist.filter(e => e.is_done).length} 
-                        diff={0} 
-                        data={segmentData(userTicklist.filter(p => p.is_done))}
-                        title="Problems sent"/>
-                </div>
-                <div>
-                    <StatsSegments total={"" + userTicklist.filter(p => !p.is_done).length} 
-                        diff={0} 
-                        data={segmentData(userTicklist.filter(p => !p.is_done))}
-                        title="Problems to send"/>
-                </div>
-            </AppShellLayout>
-        )
-    } else {
+    const { isLoading, error, data } = useQuery<boolean, unknown, Boulder[]>([ticklistQueryKey], () => getUserData(token))
+
+
+    if (isLoading) {
         return (
             <AppShellLayout username={username} logout={logout}>
                 <h2>Dashboard</h2>
@@ -112,4 +88,27 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
             </AppShellLayout>
         )
     }
+    if (error) {
+        <Text>Error loading data</Text>
+    }
+    return (
+        <AppShellLayout logout={logout} username={username}>
+            <h2>Dashboard</h2>
+            <div style={{ marginBottom: "1rem" }}>
+                <StatsCard done={data!.filter(p => p.is_done).length} todo={data!.filter(p => !p.is_done).length}></StatsCard>
+            </div>
+            <div style={{ marginBottom: "1rem" }}>
+                <StatsSegments total={"" + data!.filter(e => e.is_done).length}
+                    diff={0}
+                    data={segmentData(data!.filter(p => p.is_done))}
+                    title="Problems sent" />
+            </div>
+            <div>
+                <StatsSegments total={"" + data!.filter(p => !p.is_done).length}
+                    diff={0}
+                    data={segmentData(data!.filter(p => !p.is_done))}
+                    title="Problems to send" />
+            </div>
+        </AppShellLayout>
+    )
 }
