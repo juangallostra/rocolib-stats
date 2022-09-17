@@ -6,18 +6,18 @@ import './components/Login.css'
 import { Dashboard, Preferences } from './pages';
 
 export default function App() {
-  const [token, setToken] = useState("");
-  const [username, setUsername] = useState("");
+  const [token, setToken] = useState('');
+  const [username, setUsername] = useState('');
 
   function Logout() {
-    setToken("");
+    setToken('');
   }
 
   const getUsername = () => username;
 
   if (!token) {
     return (
-      <div className="login-wrapper">
+      <div className='login-wrapper'>
         <Login setUsername={setUsername} setToken={setToken}/>
       </div>
     )

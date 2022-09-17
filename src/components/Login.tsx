@@ -51,8 +51,8 @@ export default function Login({ setToken, setUsername }: LoginProps) {
 
     return (
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-            <TextInput withAsterisk label={"Username"} type={'text'} {...form.getInputProps('username')} />
-            <TextInput withAsterisk label={"Password"} type={"password"} {...form.getInputProps('password')} />
+            <TextInput withAsterisk label={'Username'} type={'text'} {...form.getInputProps('username')} />
+            <TextInput withAsterisk label={'Password'} type={'password'} {...form.getInputProps('password')} />
             <div>
                 <Button type={'submit'} mt={10}>
                     Submit

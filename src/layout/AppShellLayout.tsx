@@ -14,14 +14,14 @@ export const AppShellLayout = ({ username, children, logout }: ShellLayoutProps)
 
   return (
     <AppShell
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
-      padding="md"
+      navbarOffsetBreakpoint='sm'
+      asideOffsetBreakpoint='sm'
+      padding='md'
       navbar={
         <AppRoutes opened={opened}/>
       }
       header={
-        <Header height={60} p="xs">
+        <Header height={60} p='xs'>
           <AppHeader opened={opened} setOpened={setOpened} username={username} logout={logout}/>
         </Header>
       }

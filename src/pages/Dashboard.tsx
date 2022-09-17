@@ -43,7 +43,7 @@ interface Hold {
 
 export const Dashboard = ({ token, username, logout }: DashboardProps) => {
 
-    const colors = ["green", "blue", "yellow", "red"];
+    const colors = ['green', 'blue', 'yellow', 'red'];
     const ticklistQueryKey = 'ticklist';
 
     async function getUserData(token: string) {
@@ -66,10 +66,10 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
         return colors.map(
             c => Object.fromEntries(
                 [
-                    ["count", "" + ticklist.filter(p => p.difficulty === c).length],
-                    ["label", c],
-                    ["part", Math.round(100 * (100 * (Number.EPSILON + ticklist.filter(p => p.difficulty === c).length / ticklist.length))) / 100],
-                    ["color", c]
+                    ['count', '' + ticklist.filter(p => p.difficulty === c).length],
+                    ['label', c],
+                    ['part', Math.round(100 * (100 * (Number.EPSILON + ticklist.filter(p => p.difficulty === c).length / ticklist.length))) / 100],
+                    ['color', c]
                 ]
             )
         );
@@ -94,20 +94,20 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
     return (
         <AppShellLayout logout={logout} username={username}>
             <h2>Dashboard</h2>
-            <div style={{ marginBottom: "1rem" }}>
+            <div style={{ marginBottom: '1rem' }}>
                 <StatsCard done={data!.filter(p => p.is_done).length} todo={data!.filter(p => !p.is_done).length}></StatsCard>
             </div>
-            <div style={{ marginBottom: "1rem" }}>
-                <StatsSegments total={"" + data!.filter(e => e.is_done).length}
+            <div style={{ marginBottom: '1rem' }}>
+                <StatsSegments total={'' + data!.filter(e => e.is_done).length}
                     diff={0}
                     data={segmentData(data!.filter(p => p.is_done))}
-                    title="Problems sent" />
+                    title='Problems sent' />
             </div>
             <div>
-                <StatsSegments total={"" + data!.filter(p => !p.is_done).length}
+                <StatsSegments total={'' + data!.filter(p => !p.is_done).length}
                     diff={0}
                     data={segmentData(data!.filter(p => !p.is_done))}
-                    title="Problems to send" />
+                    title='Problems to send' />
             </div>
         </AppShellLayout>
     )

@@ -1,5 +1,5 @@
-import { Navbar } from "@mantine/core";
-import { DashboardNav, PreferencesNav } from "../components";
+import { Navbar } from '@mantine/core';
+import { DashboardNav, PreferencesNav } from '../components';
 
 interface NavBarProps {
     opened: boolean;
@@ -7,15 +7,15 @@ interface NavBarProps {
 
 export const AppRoutes = ({opened}: NavBarProps) => {
     return (
-        <Navbar p="md" 
-            hiddenBreakpoint="sm" 
+        <Navbar p='md' 
+            hiddenBreakpoint='sm' 
             hidden={!opened} 
             width={{ sm: 200, lg: 250 }} 
-            height={"100vh"}>
-            <Navbar.Section mt="xs">
+            height={'100vh'}>
+            <Navbar.Section mt='xs'>
                 <DashboardNav />
             </Navbar.Section>
-            <Navbar.Section mt="xs">
+            <Navbar.Section mt='xs'>
                 <PreferencesNav />
             </Navbar.Section>
         </Navbar>

@@ -32,32 +32,32 @@ export const StatsCard = ({done, todo}: StatsCardProps ) => {
   const { classes } = useStyles();
 
   return (
-    <Paper radius="md" withBorder className={classes.card} mt={ICON_SIZE / 3}>
+    <Paper radius='md' withBorder className={classes.card} mt={ICON_SIZE / 3}>
       <ThemeIcon className={classes.icon} size={ICON_SIZE} radius={ICON_SIZE}>
         <IconPercentage size={34} stroke={1.5} />
       </ThemeIcon>
 
-      <Text align="center" weight={700} className={classes.title}>
+      <Text align='center' weight={700} className={classes.title}>
         Ticklist completion
       </Text>
-      {/* <Text color="dimmed" align="center" size="sm">
+      {/* <Text color='dimmed' align='center' size='sm'>
         32 km / week
       </Text> */}
 
-      <Group position="apart" mt="xs">
-        <Text size="sm" color="dimmed">
+      <Group position='apart' mt='xs'>
+        <Text size='sm' color='dimmed'>
           Progress
         </Text>
-        <Text size="sm" color="dimmed">
+        <Text size='sm' color='dimmed'>
           {Math.round(100 * (Number.EPSILON + 100 * done / (done + todo))) / 100} %
         </Text>
       </Group>
 
       <Progress value={Math.round(100 * (Number.EPSILON + 100 * done / (done + todo))) / 100} mt={5} />
 
-      <Group position="apart" mt="md">
-        <Text size="sm">{done} / {done + todo} problems</Text>
-        {/* <Badge size="sm">4 days left</Badge> */}
+      <Group position='apart' mt='md'>
+        <Text size='sm'>{done} / {done + todo} problems</Text>
+        {/* <Badge size='sm'>4 days left</Badge> */}
       </Group>
     </Paper>
   );

@@ -6,9 +6,9 @@ import { IconSettings, IconHome } from "@tabler/icons";
 export const PreferencesNav = () => {
     const location = useLocation();
     return (
-        <NavLink label="Preferences" 
+        <NavLink label='Preferences' 
             component={Link} 
-            to="/preferences" 
+            to='/preferences' 
             active={location.pathname === '/preferences'} 
             icon={<IconSettings></IconSettings>} />
     )
@@ -17,9 +17,9 @@ export const PreferencesNav = () => {
 export const DashboardNav = () => {
     const location = useLocation();
     return (
-        <NavLink label="Dashboard" 
+        <NavLink label='Dashboard'
             component={Link} 
-            to="/" 
+            to='/'
             active={location.pathname === '/'} 
             icon={<IconHome></IconHome>} />
     )
