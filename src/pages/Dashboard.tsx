@@ -86,7 +86,7 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
             <AppShellLayout logout={logout} username={username}>
                 <h2>Dashboard</h2>
                 <div style={{marginBottom: "1rem"}}>
-                    <StatsCard done={userTicklist.filter(e => e.is_done).length} todo={userTicklist.filter(e => !e.is_done).length}></StatsCard>
+                    <StatsCard done={userTicklist.filter(p => p.is_done).length} todo={userTicklist.filter(p => !p.is_done).length}></StatsCard>
                 </div>
                 <div style={{marginBottom: "1rem"}}>
                     <StatsSegments total={"" + userTicklist.filter(e => e.is_done).length} 
@@ -95,7 +95,7 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
                         title="Problems sent"/>
                 </div>
                 <div>
-                    <StatsSegments total={"" + userTicklist.filter(e => !e.is_done).length} 
+                    <StatsSegments total={"" + userTicklist.filter(p => !p.is_done).length} 
                         diff={0} 
                         data={segmentData(userTicklist.filter(p => !p.is_done))}
                         title="Problems to send"/>
