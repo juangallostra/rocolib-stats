@@ -1,5 +1,5 @@
-import { Loader, Text } from '@mantine/core';
 import React from 'react';
+import { Loader, Text } from '@mantine/core';
 import { StatsCard, StatsSegments } from '../components';
 import { AppShellLayout } from '../layout';
 import './Dashboard.css';
