@@ -1,6 +1,6 @@
 import React from 'react';
 import { Loader, Text } from '@mantine/core';
-import { StatsCard, StatsSegments } from '../components';
+import { DailyStats, StatsCard, StatsSegments } from '../components';
 import { AppShellLayout } from '../layout';
 import './Dashboard.css';
 import { useQuery } from '@tanstack/react-query'
@@ -48,7 +48,7 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
 
     async function getUserData(token: string) {
         return fetch(
-            'https://rocolib.herokuapp.com/api/v1/user/ticklist',
+            'https://rocolib.herokuapp.com/api/v1/user/ticklist', // This gets whole ticklist, both done and todo
             // 'http://localhost:5050/api/v1/user/ticklist',
             {
                 method: 'GET',
@@ -103,11 +103,14 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
                     data={segmentData(data!.filter(p => p.is_done))}
                     title='problems sent' />
             </div>
-            <div>
+            <div style={{marginBottom: '1rem'}}>
                 <StatsSegments total={'' + data!.filter(p => !p.is_done).length}
                     diff={0}
                     data={segmentData(data!.filter(p => !p.is_done))}
                     title='problems in ticklist to send' />
+            </div>
+            <div>
+                <DailyStats sentProblems={data!.filter(p => p.is_done)}></DailyStats>
             </div>
         </AppShellLayout>
     )
