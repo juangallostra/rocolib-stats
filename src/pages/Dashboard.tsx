@@ -101,13 +101,13 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
                 <StatsSegments total={'' + data!.filter(e => e.is_done).length}
                     diff={0}
                     data={segmentData(data!.filter(p => p.is_done))}
-                    title='Problems sent' />
+                    title='problems sent' />
             </div>
             <div>
                 <StatsSegments total={'' + data!.filter(p => !p.is_done).length}
                     diff={0}
                     data={segmentData(data!.filter(p => !p.is_done))}
-                    title='Problems to send' />
+                    title='problems in ticklist to send' />
             </div>
         </AppShellLayout>
     )

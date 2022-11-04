@@ -1,4 +1,4 @@
-import { createStyles, ThemeIcon, Progress, Text, Group, Badge, Paper } from '@mantine/core';
+import { createStyles, ThemeIcon, Progress, Text, Group, Paper } from '@mantine/core';
 import { IconPercentage } from '@tabler/icons';
 
 const ICON_SIZE = 60;
