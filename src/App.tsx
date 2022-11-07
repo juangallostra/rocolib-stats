@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Login from './components/Login';
 import './components/Login.css'
-import { Dashboard, Preferences } from './pages';
+import { Dashboard, DataExplorer, Preferences } from './pages';
 
 export default function App() {
   const [token, setToken] = useState('');
@@ -28,6 +28,7 @@ export default function App() {
         <Routes>
           <Route index element={ <Dashboard username={getUsername()} token={token} logout={Logout} /> } />
           <Route path='/preferences' element={ <Preferences username={getUsername()} logout={Logout} /> } />
+          <Route path='/data_explorer' element={ <DataExplorer username={getUsername()} logout={Logout} /> } />
         </Routes>
       </BrowserRouter>
   );

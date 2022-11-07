@@ -4,6 +4,7 @@ import { DailyStats, StatsCard, StatsSegments } from '../components';
 import { AppShellLayout } from '../layout';
 import './Dashboard.css';
 import { useQuery } from '@tanstack/react-query'
+import { getUserTicklist } from '../api';
 
 export interface DashboardProps {
     token: string;
@@ -46,22 +47,6 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
     const colors = ['green', 'blue', 'yellow', 'red'];
     const ticklistQueryKey = 'ticklist';
 
-    async function getUserData(token: string) {
-        return fetch(
-            'https://rocolib.herokuapp.com/api/v1/user/ticklist', // This gets whole ticklist, both done and todo
-            // 'http://localhost:5050/api/v1/user/ticklist',
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            }
-        )
-            .then(data => data.json())
-            .then(data => data.boulders)
-    }
-
     function segmentData(ticklist: Boulder[]): any {
         return colors.map(
             c => Object.fromEntries(
@@ -75,7 +60,7 @@ export const Dashboard = ({ token, username, logout }: DashboardProps) => {
         );
     }
 
-    const { isLoading, error, data } = useQuery<boolean, unknown, Boulder[]>([ticklistQueryKey], () => getUserData(token))
+    const { isLoading, error, data } = useQuery<boolean, unknown, Boulder[]>([ticklistQueryKey], () => getUserTicklist(token))
 
 
     if (isLoading) {

@@ -1,5 +1,5 @@
 import { Navbar } from '@mantine/core';
-import { DashboardNav, PreferencesNav } from '../components';
+import { DashboardNav, PreferencesNav, DataExplorerNav } from '../components';
 
 interface NavBarProps {
     opened: boolean;
@@ -17,6 +17,9 @@ export const AppRoutes = ({opened}: NavBarProps) => {
             </Navbar.Section>
             <Navbar.Section mt='xs'>
                 <PreferencesNav />
+            </Navbar.Section>
+            <Navbar.Section mt='xs'>
+                <DataExplorerNav />
             </Navbar.Section>
         </Navbar>
     );
