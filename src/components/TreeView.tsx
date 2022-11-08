@@ -6,10 +6,15 @@ import {
   MultiBackend,
   getBackendOptions,
 } from "@minoru/react-dnd-treeview";
-import SampleData from "./sample.json";
 
-export const TreeView = () => {
-  const [treeData, setTreeData] = useState<NodeModel[]>(SampleData);
+import { IconChevronRight, IconChevronDown } from "@tabler/icons";
+import "./TreeView.css";
+export interface TreeViewProps {
+  nodes: NodeModel[]
+}
+
+export const TreeView = ({nodes}: TreeViewProps) => {
+  const [treeData, setTreeData] = useState<NodeModel[]>(nodes);
   const handleDrop = (newTreeData: NodeModel[]) => setTreeData(newTreeData);
 
   return (
@@ -19,9 +24,10 @@ export const TreeView = () => {
         rootId={0}
         onDrop={handleDrop}
         render={(node, { depth, isOpen, onToggle }) => (
-          <div style={{ marginLeft: depth * 10 }}>
+          <div style={{ marginLeft: depth * 10, display: 'flex' }}>
             {node.droppable && (
-              <span onClick={onToggle}>{isOpen ? "[-]" : "[+]"}</span>
+              // <span onClick={onToggle}>{isOpen ? "[-]" : "[+]"}</span>
+              <span onClick={onToggle}>{isOpen ? <IconChevronDown/> : <IconChevronRight/>}</span>
             )}
             {node.text}
           </div>
