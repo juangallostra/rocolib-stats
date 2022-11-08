@@ -1,9 +1,47 @@
 
 export interface Gym {
+    _id: string;
     id: string;
     name: string;
     coordinates: number[];
+}
+
+export interface Wall {
     _id: string;
+    image: string;
+    name : string;
+    radius: number;
+    latest: boolean;
+}
+
+export interface Boulder {
+    color: string;
+    creator: string;
+    date_climbed: string[];
+    difficulty: string;
+    feet: string;
+    gym: string;
+    holds: Hold[];
+    is_done: boolean;
+    name: string;
+    radius: number;
+    raters: number;
+    rating: number;
+    repetitions: number;
+    safe_name: string;
+    section: string;
+    time: string;
+    _id: string;
+}
+
+interface Hold {
+    color: string;
+    x: number;
+    y: number;
+}
+
+export interface Ticklist {
+    boulders: Boulder[];
 }
 
 export const getUserTicklist = async (token: string) => {
@@ -37,7 +75,7 @@ export const getGyms = async (): Promise<Gym[]> => {
         .then(data => data.gyms)
 }
 
-export const getGymWalls = async (gymId: string) => {
+export const getGymWalls = async (gymId: string): Promise<Wall[]> => {
     return fetch(
         `https://rocolib.herokuapp.com/api/v1/gym/${gymId}/walls`,
         {
@@ -51,7 +89,7 @@ export const getGymWalls = async (gymId: string) => {
         .then(data => data.walls)
 }
 
-export const getProblems = async (gymId: string) => {
+export const getProblems = async (gymId: string): Promise<Boulder[]> => {
     return fetch(
         `https://rocolib.herokuapp.com/api/v1/boulders/${gymId}/list`,
         {

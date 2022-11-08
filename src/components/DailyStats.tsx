@@ -2,7 +2,7 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 import { createStyles, UnstyledButton, Text, Paper, Group } from '@mantine/core';
 import { IconChevronDown, IconChevronUp, IconChartPie, IconChartPie2} from '@tabler/icons';
-import { Boulder } from '../pages';
+import { Boulder } from '../api';
 
 const useStyles = createStyles((theme) => ({
   root: {
