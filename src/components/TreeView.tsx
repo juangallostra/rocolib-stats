@@ -22,7 +22,8 @@ export const TreeView = ({nodes}: TreeViewProps) => {
       <Tree
         tree={treeData}
         rootId={0}
-        onDrop={handleDrop}
+        canDrag={(node) => false}
+        onDrop={handleDrop} // here we could, for example, load the children?
         render={(node, { depth, isOpen, onToggle }) => (
           <div style={{ marginLeft: depth * 10, display: 'flex' }}>
             {node.droppable && (
