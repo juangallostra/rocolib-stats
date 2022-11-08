@@ -79,7 +79,7 @@ export const DataExplorer = ({ logout, username }: DataExplorerProps) => {
     if (isLoading) {
         return (
             <AppShellLayout username={username} logout={logout}>
-                <h2>Dashboard</h2>
+                <h2>Database Explorer</h2>
                 <div className='loader-wrapper'>
                     <Loader size={'xl'} />
                 </div>
@@ -91,7 +91,7 @@ export const DataExplorer = ({ logout, username }: DataExplorerProps) => {
     }
     return (
         <AppShellLayout username={username} logout={logout}>
-            <h2>Database Data Explorer</h2>
+            <h2>Database Explorer</h2>
             <TreeView nodes={data!}></TreeView>
         </AppShellLayout>
     )
