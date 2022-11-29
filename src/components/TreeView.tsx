@@ -10,10 +10,10 @@ import {
 import { IconChevronRight, IconChevronDown } from "@tabler/icons";
 import "./TreeView.css";
 export interface TreeViewProps {
-  nodes: NodeModel[]
+  nodes: NodeModel[];
 }
 
-export const TreeView = ({nodes}: TreeViewProps) => {
+export const TreeView = ({ nodes }: TreeViewProps) => {
   const [treeData, setTreeData] = useState<NodeModel[]>(nodes);
   const handleDrop = (newTreeData: NodeModel[]) => setTreeData(newTreeData);
 
@@ -25,10 +25,12 @@ export const TreeView = ({nodes}: TreeViewProps) => {
         canDrag={(node) => false}
         onDrop={handleDrop} // here we could, for example, load the children?
         render={(node, { depth, isOpen, onToggle }) => (
-          <div style={{ marginLeft: depth * 10, display: 'flex' }}>
+          <div style={{ marginLeft: depth * 10, display: "flex" }}>
             {node.droppable && (
               // <span onClick={onToggle}>{isOpen ? "[-]" : "[+]"}</span>
-              <span onClick={onToggle}>{isOpen ? <IconChevronDown/> : <IconChevronRight/>}</span>
+              <span onClick={onToggle}>
+                {isOpen ? <IconChevronDown /> : <IconChevronRight />}
+              </span>
             )}
             {node.text}
           </div>
@@ -36,4 +38,4 @@ export const TreeView = ({nodes}: TreeViewProps) => {
       />
     </DndProvider>
   );
-}
+};

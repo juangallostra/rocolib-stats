@@ -1,5 +1,13 @@
-import { createStyles, Progress, Box, Text, Group, Paper, SimpleGrid } from '@mantine/core';
-import { IconChartBar } from '@tabler/icons';
+import {
+  createStyles,
+  Progress,
+  Box,
+  Text,
+  Group,
+  Paper,
+  SimpleGrid,
+} from "@mantine/core";
+import { IconChartBar } from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
   progressLabel: {
@@ -9,7 +17,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   stat: {
-    borderBottom: '3px solid',
+    borderBottom: "3px solid",
     paddingBottom: 5,
   },
 
@@ -20,12 +28,15 @@ const useStyles = createStyles((theme) => ({
 
   diff: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
 
   icon: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[4],
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[3]
+        : theme.colors.gray[4],
   },
 }));
 
@@ -41,7 +52,12 @@ interface StatsSegmentsProps {
   }[];
 }
 
-export const StatsSegments = ({ total, diff, title, data }: StatsSegmentsProps) => {
+export const StatsSegments = ({
+  total,
+  diff,
+  title,
+  data,
+}: StatsSegmentsProps) => {
   const { classes } = useStyles();
 
   const segments = data.map((segment) => ({
@@ -51,14 +67,23 @@ export const StatsSegments = ({ total, diff, title, data }: StatsSegmentsProps) 
   }));
 
   const descriptions = data.map((stat) => (
-    <Box key={stat.label} sx={{ borderBottomColor: stat.color }} className={classes.stat}>
-      <Text transform='uppercase' size='xs' color='dimmed' weight={700}>
+    <Box
+      key={stat.label}
+      sx={{ borderBottomColor: stat.color }}
+      className={classes.stat}
+    >
+      <Text transform="uppercase" size="xs" color="dimmed" weight={700}>
         {stat.label}
       </Text>
 
-      <Group position='apart' align='flex-end' spacing={0}>
+      <Group position="apart" align="flex-end" spacing={0}>
         <Text weight={700}>{stat.count}</Text>
-        <Text color={stat.color} weight={700} size='sm' className={classes.statCount}>
+        <Text
+          color={stat.color}
+          weight={700}
+          size="sm"
+          className={classes.statCount}
+        >
           {stat.part}%
         </Text>
       </Group>
@@ -66,10 +91,10 @@ export const StatsSegments = ({ total, diff, title, data }: StatsSegmentsProps) 
   ));
 
   return (
-    <Paper withBorder p='md' radius='md'>
-      <Group position='apart'>
-        <Group align='flex-end' spacing='xs'>
-          <Text size='xl' weight={700}>
+    <Paper withBorder p="md" radius="md">
+      <Group position="apart">
+        <Group align="flex-end" spacing="xs">
+          <Text size="xl" weight={700}>
             {total} {title}
           </Text>
           {/* <Text color='teal' className={classes.diff} size='sm' weight={700}>
@@ -80,7 +105,7 @@ export const StatsSegments = ({ total, diff, title, data }: StatsSegmentsProps) 
         <IconChartBar size={20} className={classes.icon} stroke={1.5} />
       </Group>
 
-      <Text color='dimmed' size='sm'>
+      <Text color="dimmed" size="sm">
         Problem segmentation
       </Text>
 
@@ -90,9 +115,9 @@ export const StatsSegments = ({ total, diff, title, data }: StatsSegmentsProps) 
         classNames={{ label: classes.progressLabel }}
         mt={40}
       />
-      <SimpleGrid cols={3} breakpoints={[{ maxWidth: 'xs', cols: 1 }]} mt='xl'>
+      <SimpleGrid cols={3} breakpoints={[{ maxWidth: "xs", cols: 1 }]} mt="xl">
         {descriptions}
       </SimpleGrid>
     </Paper>
   );
-}
+};
