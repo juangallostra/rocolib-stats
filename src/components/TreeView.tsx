@@ -9,8 +9,10 @@ import {
 
 import { IconChevronRight, IconChevronDown } from "@tabler/icons";
 import "./TreeView.css";
+import { BoulderProblemNode } from "../pages/utils";
+
 export interface TreeViewProps {
-  nodes: NodeModel[];
+  nodes: NodeModel<BoulderProblemNode>[];
 }
 
 export const TreeView = ({ nodes }: TreeViewProps) => {
@@ -23,11 +25,10 @@ export const TreeView = ({ nodes }: TreeViewProps) => {
         tree={treeData}
         rootId={0}
         canDrag={(node) => false}
-        onDrop={handleDrop} // here we could, for example, load the children?
+        onDrop={handleDrop}
         render={(node, { depth, isOpen, onToggle }) => (
           <div style={{ marginLeft: depth * 10, display: "flex" }}>
             {node.droppable && (
-              // <span onClick={onToggle}>{isOpen ? "[-]" : "[+]"}</span>
               <span onClick={onToggle}>
                 {isOpen ? <IconChevronDown /> : <IconChevronRight />}
               </span>
