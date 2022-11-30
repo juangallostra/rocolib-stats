@@ -30,6 +30,7 @@ export interface Boulder {
   safe_name: string;
   section: string;
   time: string;
+  notes: string;
   _id: string;
 }
 
