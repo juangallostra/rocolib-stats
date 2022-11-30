@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { ReducerAction, useState } from "react";
 import { DndProvider } from "react-dnd";
 import {
   Tree,
@@ -10,7 +10,7 @@ import {
 import { IconChevronRight, IconChevronDown } from "@tabler/icons";
 import "./TreeView.css";
 import { BoulderProblemNode } from "../pages/utils";
-import { CardGradient } from "./CardTreeNodeView";
+import { CardGradient, CardSimple } from "./CardTreeNodeView";
 
 export interface TreeViewProps {
   nodes: NodeModel<BoulderProblemNode>[];
@@ -22,7 +22,10 @@ export const TreeView = ({ nodes }: TreeViewProps) => {
   const handleDrop = (newTreeData: NodeModel<BoulderProblemNode>[]) =>
     setTreeData(newTreeData);
 
-  const getTreenode = (node: NodeModel<BoulderProblemNode>) => {
+  const getTreeNode = (
+    node: NodeModel<BoulderProblemNode>,
+    icon?: React.ReactNode
+  ) => {
     if (node.data?.isTerminalNode) {
       return (
         <CardGradient
@@ -32,7 +35,8 @@ export const TreeView = ({ nodes }: TreeViewProps) => {
         ></CardGradient>
       );
     }
-    return node.text;
+    return <CardSimple title={node.text} icon={icon} />;
+    // return node.text;
   };
 
   return (
@@ -43,14 +47,14 @@ export const TreeView = ({ nodes }: TreeViewProps) => {
         canDrag={(node) => false}
         onDrop={handleDrop}
         render={(node, { depth, isOpen, onToggle }) => (
-          // <div style={{ marginLeft: depth * 10, display: "flex" }}>
-          <div style={{ marginLeft: depth * 10 }}>
-            {node.droppable && (
-              <span onClick={onToggle}>
-                {isOpen ? <IconChevronDown /> : <IconChevronRight />}
-              </span>
+          <div
+            style={{ marginLeft: depth * 10 }}
+            onClick={() => (node.droppable ? onToggle() : (() => {})())}
+          >
+            {getTreeNode(
+              node,
+              isOpen ? <IconChevronDown /> : <IconChevronRight />
             )}
-            {getTreenode(node)}
           </div>
         )}
       />

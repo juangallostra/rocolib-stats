@@ -1,7 +1,15 @@
-import { createStyles, Group, Paper, Text, ThemeIcon } from "@mantine/core";
-import { IconCircle } from "@tabler/icons";
+import {
+  UnstyledButton,
+  UnstyledButtonProps,
+  createStyles,
+  Group,
+  Paper,
+  Text,
+  ThemeIcon,
+} from "@mantine/core";
+import { IconCircle, IconChevronRight } from "@tabler/icons";
 
-const useStyles = createStyles((theme) => ({
+const useStylesCardGradient = createStyles((theme) => ({
   card: {
     position: "relative",
     cursor: "pointer",
@@ -31,6 +39,45 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const useStyles = createStyles((theme) => ({
+  user: {
+    display: "block",
+    width: "100%",
+    padding: theme.spacing.md,
+    color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
+
+    "&:hover": {
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[8]
+          : theme.colors.gray[0],
+    },
+  },
+}));
+
+interface UserButtonProps extends UnstyledButtonProps {
+  title: string;
+  icon?: React.ReactNode;
+}
+
+export const CardSimple = ({ title, icon, ...others }: UserButtonProps) => {
+  const { classes } = useStyles();
+
+  return (
+    <UnstyledButton className={classes.user} {...others}>
+      <Group>
+        <div style={{ flex: 1 }}>
+          <Text size="sm" weight={500}>
+            {title}
+          </Text>
+        </div>
+
+        {icon || <IconChevronRight size={14} stroke={1.5} />}
+      </Group>
+    </UnstyledButton>
+  );
+};
+
 interface CardGradientProps {
   title: string;
   description: string;
@@ -42,7 +89,7 @@ export const CardGradient = ({
   description,
   difficultyColor,
 }: CardGradientProps) => {
-  const { classes } = useStyles();
+  const { classes } = useStylesCardGradient();
   return (
     <Paper
       withBorder
