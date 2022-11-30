@@ -1,6 +1,7 @@
-import { Button, TextInput } from "@mantine/core";
+import { Button, TextInput, Loader } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React from "react";
+import React, { useState } from "react";
+import "./Login.css";
 
 interface LoginProps {
   setToken: React.Dispatch<React.SetStateAction<string>>;
@@ -26,12 +27,16 @@ async function loginUser(credentials: userCreds) {
 }
 
 export default function Login({ setToken, setUsername }: LoginProps) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const handleSubmit = async (creds: userCreds) => {
+    setIsLoading(true);
     const resp = await loginUser({
       ...creds,
     });
     setToken(resp.token);
     setUsername(creds.username);
+    setIsLoading(false);
   };
 
   const form = useForm({
@@ -47,7 +52,11 @@ export default function Login({ setToken, setUsername }: LoginProps) {
     },
   });
 
-  return (
+  return isLoading ? (
+    <div className="loader-wrapper">
+      <Loader size={"xl"}></Loader>
+    </div>
+  ) : (
     <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
       <TextInput
         withAsterisk

@@ -4,6 +4,7 @@ import { AppShellLayout } from "../layout";
 import { NodeModel } from "@minoru/react-dnd-treeview";
 import { Loader, Text } from "@mantine/core";
 import { BoulderProblemNode, getTree } from "./utils";
+import "./Dashboard.css";
 
 interface DataExplorerProps {
   logout: Function;

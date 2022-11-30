@@ -1,4 +1,3 @@
-import React from "react";
 import { Loader, Text } from "@mantine/core";
 import { DailyStats, StatsCard, StatsSegments } from "../components";
 import { AppShellLayout } from "../layout";
