@@ -46,7 +46,7 @@ export interface Ticklist {
 
 export const getUserTicklist = async (token: string) => {
   return fetch(
-    "https://rocolib.herokuapp.com/api/v1/user/ticklist", // This gets whole ticklist, both done and todo
+    "https://rocolib.onrender.com/api/v1/user/ticklist", // This gets whole ticklist, both done and todo
     // 'http://localhost:5050/api/v1/user/ticklist',
     {
       method: "GET",
@@ -61,7 +61,7 @@ export const getUserTicklist = async (token: string) => {
 };
 
 export const getGyms = async (): Promise<Gym[]> => {
-  return fetch("https://rocolib.herokuapp.com/api/v1/gym/list", {
+  return fetch("https://rocolib.onrender.com/api/v1/gym/list", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export const getGyms = async (): Promise<Gym[]> => {
 };
 
 export const getGymWalls = async (gymId: string): Promise<Wall[]> => {
-  return fetch(`https://rocolib.herokuapp.com/api/v1/gym/${gymId}/walls`, {
+  return fetch(`https://rocolib.onrender.com/api/v1/gym/${gymId}/walls`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const getGymWalls = async (gymId: string): Promise<Wall[]> => {
 };
 
 export const getProblems = async (gymId: string): Promise<Boulder[]> => {
-  return fetch(`https://rocolib.herokuapp.com/api/v1/boulders/${gymId}/list`, {
+  return fetch(`https://rocolib.onrender.com/api/v1/boulders/${gymId}/list`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
