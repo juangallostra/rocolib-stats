@@ -6,20 +6,21 @@ import {
   Text,
   Paper,
   Group,
+  Button,
+  Space,
 } from "@mantine/core";
+import { DatePicker } from "@mantine/dates";
 import {
   IconChevronDown,
   IconChevronUp,
   IconChartPie,
   IconChartPie2,
+  IconCalendarEvent,
 } from "@tabler/icons";
 import { Boulder } from "../api";
 
 const useStyles = createStyles((theme) => ({
   root: {
-    // backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
-    //   theme.colors[theme.primaryColor][7]
-    // } 100%)`,
     backgroundImage: `linear-gradient(-60deg, ${theme.colors.gray[0]} 0%, ${theme.colors.gray[2]} 100%)`,
     padding: theme.spacing.xl,
     borderRadius: theme.radius.md,
@@ -34,7 +35,6 @@ const useStyles = createStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: theme.spacing.lg,
-    // color: theme.colors[theme.primaryColor][6],
     color: theme.colors.gray[7],
   },
 
@@ -71,7 +71,6 @@ const useStyles = createStyles((theme) => ({
   day: {
     fontSize: 44,
     fontWeight: 700,
-    // color: theme.white,
     color: theme.colors.gray[6],
     lineHeight: 1,
     textAlign: "center",
@@ -81,7 +80,6 @@ const useStyles = createStyles((theme) => ({
 
   month: {
     fontSize: theme.fontSizes.sm,
-    // color: theme.white,
     color: theme.colors.gray[7],
     lineHeight: 1,
     textAlign: "center",
@@ -110,7 +108,6 @@ const useStyles = createStyles((theme) => ({
   control: {
     height: 28,
     width: "100%",
-    // color: theme.colors[theme.primaryColor][2],
     color: theme.colors.gray[6],
     display: "flex",
     justifyContent: "center",
@@ -203,7 +200,6 @@ export const DailyStats = ({ sentProblems }: DailyStatsProps) => {
       p="xs"
       key={stat.label}
     >
-      {/* <stat.icon size={32} className={classes.icon} stroke={1.5} /> */}
       {getIcon(stat, sentProblems, date, classes)}
       <div>
         <Text className={classes.label}>{stat.label}</Text>
@@ -224,6 +220,22 @@ export const DailyStats = ({ sentProblems }: DailyStatsProps) => {
   return (
     <div className={classes.root}>
       <div className={classes.controls}>
+        <Group>
+          <Button
+            onClick={() => setDate(() => dayjs(Date.now()).toDate())}
+            color="gray"
+          >
+            Today
+          </Button>
+          <DatePicker
+            placeholder="Pick date"
+            value={date}
+            onChange={(selected) => setDate(selected ?? new Date())}
+            clearable={false}
+            icon={<IconCalendarEvent size={16} />}
+          />
+        </Group>
+        <Space h="md" />
         <UnstyledButton
           className={classes.control}
           onClick={() =>
